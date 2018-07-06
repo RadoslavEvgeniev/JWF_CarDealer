@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{fragments/head}"></th:block>
+</head>
+<body>
+    <div class="jumbotron" style="background-color: deepskyblue">
+        <h1>Ordered Customers</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Birth Date</th>
+                <th scope="col">Is Young Driver</th>
+            </tr>
+            </thead>
+            <tbody>
+
+                <th:block th:each="customer : ${customers}">
+                    <tr>
+                        <td th:text="${customer.name}"></td>
+                        <td th:text="${customer.birthDate}"></td>
+                        <th:block th:if="${customer.youngDriver}">
+                            <td><input type="checkbox" checked disabled></td>
+                        </th:block>
+                        <th:block th:unless="${customer.youngDriver}">
+                            <td><input type="checkbox" disabled></td>
+                        </th:block>
+                    </tr>
+                </th:block>
+
+            </tbody>
+        </table>
+        <a class="btn btn" role="button" style="background-color: white" th:href="@{/}">Back to home</a>
+    </div>
+</body>
+</html>
