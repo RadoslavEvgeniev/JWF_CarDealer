@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{fragments/head}"></th:block>
+    <link rel="stylesheet" href="../../bootstrap.css">
+</head>
+<body>
+    <div class="jumbotron">
+        <h1>Welcome to car dealer!</h1>
+        <h2>Spring Essentials Exercise</h2>
+        <h4>5. Total Sales by Customer Task</h4>
+        <hr />
+        <h5 th:text="${customer.name}"></h5>
+        <h5 th:text="${customer.sales.size()}"></h5>
+        <h5 th:text="|${customer.totalMoneySpent} USD|"></h5>
+        <a class="btn bg-white" th:href="@{/customers}">Back to Customers</a>
+        <a class="btn bg-white" th:href="@{/}">Back to Home</a>
+    </div>
+</body>
+</html>

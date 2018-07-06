@@ -1,7 +1,10 @@
 package app.cardealer.services;
 
 import app.cardealer.entites.Customer;
+import app.cardealer.models.view.CustomerDetailsSalesViewModel;
 import app.cardealer.models.view.CustomerDetailsViewModel;
+import app.cardealer.models.view.PartViewModel;
+import app.cardealer.models.view.SaleDetailsViewModel;
 import app.cardealer.repositories.CustomerRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,4 +42,29 @@ public class CustomerServiceImpl implements CustomerService {
 
         return customersByBDate;
     }
+
+    @Override
+    public CustomerDetailsSalesViewModel extractCustomerAndSales(Long id) {
+        Customer customerFromDb = this.customerRepository.findById(id).orElse(null);
+        if (customerFromDb == null) {
+            return null;
+        }
+
+        CustomerDetailsSalesViewModel customerViewModel = this.modelMapper.map(customerFromDb, CustomerDetailsSalesViewModel.class);
+
+        double totalMoneySpent = 0;
+        for (SaleDetailsViewModel saleDetailsViewModel : customerViewModel.getSales()) {
+            double moneySpentPerSale = 0;
+            for (PartViewModel partViewModel : saleDetailsViewModel.getCar().getParts()) {
+                moneySpentPerSale += partViewModel.getPrice();
+            }
+
+            totalMoneySpent += moneySpentPerSale - (saleDetailsViewModel.getDiscount() * moneySpentPerSale);
+        }
+
+        customerViewModel.setTotalMoneySpent(totalMoneySpent);
+        return customerViewModel;
+    }
+
+
 }

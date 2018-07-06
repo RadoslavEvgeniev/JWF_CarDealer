@@ -1,5 +1,6 @@
 package app.cardealer.controllers;
 
+import app.cardealer.models.view.CustomerDetailsSalesViewModel;
 import app.cardealer.models.view.CustomerDetailsViewModel;
 import app.cardealer.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,14 @@ public class CustomerController extends BaseController {
         modelAndView.addObject("customers", customers);
 
         return super.view("customers/customers-list", modelAndView);
+    }
+
+    @GetMapping("/{id}")
+    public ModelAndView customerTotalSales(@PathVariable Long id, ModelAndView modelAndView) {
+        CustomerDetailsSalesViewModel customer = this.customerService.extractCustomerAndSales(id);
+
+        modelAndView.addObject("customer", customer);
+
+        return super.view("customers/customers-details", modelAndView);
     }
 }
