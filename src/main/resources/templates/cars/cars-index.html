@@ -4,15 +4,17 @@
     <th:block th:insert="~{fragments/head}"></th:block>
 </head>
 <body>
-    <div class="jumbotron col-sm-2" style="background-color: skyblue">
+    <div class="jumbotron">
         <h1>Welcome to car dealer!</h1>
         <h2>Spring Essentials Exercise</h2>
-        <h4>Cars from make Task</h4>
+        <h4>Cars</h4>
+        <hr />
         <ul>
             <li th:each="carMake : ${carMakes}" >
                 <a th:href="@{/cars/{make}(make=${carMake})}" th:text="${carMake}"></a>
             </li>
         </ul>
+        <a class="btn bg-white" th:href="@{/}">Back to home</a>
     </div>
 </body>
 </html>

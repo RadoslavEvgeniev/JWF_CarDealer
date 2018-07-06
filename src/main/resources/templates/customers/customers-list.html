@@ -2,10 +2,14 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="~{fragments/head}"></th:block>
+    <link rel="stylesheet" href="../../bootstrap.css">
 </head>
 <body>
-    <div class="jumbotron" style="background-color: deepskyblue">
+    <div class="jumbotron">
         <h1>Ordered Customers</h1>
+        <h2>Spring Essentials Exercise</h2>
+        <h4>1. Ordered Customers Task</h4>
+        <hr />
         <table class="table table-striped">
             <thead>
             <tr>
@@ -31,7 +35,9 @@
 
             </tbody>
         </table>
-        <a class="btn btn" role="button" style="background-color: white" th:href="@{/}">Back to home</a>
+        <a class="btn bg-white" th:href="@{/customers}">Back to Customers</a>
+        <a class="btn bg-white" th:href="@{/}">Back to Home</a>
     </div>
+
 </body>
 </html>
