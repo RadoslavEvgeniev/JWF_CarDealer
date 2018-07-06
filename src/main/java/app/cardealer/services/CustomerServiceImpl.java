@@ -1,7 +1,7 @@
 package app.cardealer.services;
 
 import app.cardealer.entites.Customer;
-import app.cardealer.models.view.CustomerBirthDayViewModel;
+import app.cardealer.models.view.CustomerDetailsViewModel;
 import app.cardealer.repositories.CustomerRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +25,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerBirthDayViewModel> extractOrderedCustomersByBDay(String order) {
+    public List<CustomerDetailsViewModel> extractOrderedCustomersByBDay(String order) {
         List<Customer> customersFromDb = this.customerRepository.findAllOrderedByBirthDate();
-        List<CustomerBirthDayViewModel> customersByBDate = new ArrayList<>();
+        List<CustomerDetailsViewModel> customersByBDate = new ArrayList<>();
         for (Customer customer : customersFromDb) {
-            CustomerBirthDayViewModel customerViewModel = this.modelMapper.map(customer, CustomerBirthDayViewModel.class);
+            CustomerDetailsViewModel customerViewModel = this.modelMapper.map(customer, CustomerDetailsViewModel.class);
             customersByBDate.add(customerViewModel);
         }
 

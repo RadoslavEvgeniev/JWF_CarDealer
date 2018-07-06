@@ -1,10 +1,10 @@
 package app.cardealer.services;
 
-import app.cardealer.models.view.CustomerBirthDayViewModel;
+import app.cardealer.models.view.CustomerDetailsViewModel;
 
 import java.util.List;
 
 public interface CustomerService {
 
-    List<CustomerBirthDayViewModel> extractOrderedCustomersByBDay(String order);
+    List<CustomerDetailsViewModel> extractOrderedCustomersByBDay(String order);
 }

@@ -1,6 +1,6 @@
 package app.cardealer.controllers;
 
-import app.cardealer.models.view.CustomerBirthDayViewModel;
+import app.cardealer.models.view.CustomerDetailsViewModel;
 import app.cardealer.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +30,7 @@ public class CustomerController extends BaseController {
 
     @GetMapping("/all/{order}")
     public ModelAndView allCustomersOrderByBDate(@PathVariable String order, ModelAndView modelAndView) {
-        List<CustomerBirthDayViewModel> customers = this.customerService.extractOrderedCustomersByBDay(order);
+        List<CustomerDetailsViewModel> customers = this.customerService.extractOrderedCustomersByBDay(order);
 
         modelAndView.addObject("customers", customers);
 

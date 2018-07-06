@@ -2,13 +2,13 @@ package app.cardealer.models.view;
 
 import java.util.Date;
 
-public class CustomerBirthDayViewModel {
+public class CustomerDetailsViewModel {
 
     private String name;
     private Date birthDate;
     private Boolean isYoungDriver;
 
-    public CustomerBirthDayViewModel() {
+    public CustomerDetailsViewModel() {
     }
 
     public String getName() {
