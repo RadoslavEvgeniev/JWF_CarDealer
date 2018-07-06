@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{fragments/head}"></th:block>
+    <link rel="stylesheet" href="../../../bootstrap.css">
+</head>
+<body>
+<div class="jumbotron">
+    <h1>Welcome to car dealer!</h1>
+    <h2>Spring Essentials Exercise</h2>
+    <h4>4. Cars With Their List of Parts {id}</h4>
+    <hr />
+    <h5 th:text="${car.make}"></h5>
+    <h5 th:text="${car.model}"></h5>
+    <h5 th:text="|${car.travelledDistance} km|"></h5>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <th:block th:each="part : ${car.parts}">
+            <tr>
+                <td th:text="${part.name}"></td>
+                <td th:text="|${part.price} USD|"></td>
+            </tr>
+        </th:block>
+
+        </tbody>
+    </table>
+    <a class="btn bg-white" th:href="@{/cars}">Back to cars</a>
+    <a class="btn bg-white" th:href="@{/}">Back to home</a>
+</div>
+</body>
+</html>

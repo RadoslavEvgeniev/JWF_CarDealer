@@ -1,5 +1,6 @@
 package app.cardealer.controllers;
 
+import app.cardealer.models.view.CarDetailsPartsViewModel;
 import app.cardealer.models.view.CarDetailsViewModel;
 import app.cardealer.services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,12 @@ public class CarController extends BaseController {
         this.carService = carService;
     }
 
-    @GetMapping("/all")
+    @GetMapping("")
     public ModelAndView allCarMakesIndex(ModelAndView modelAndView) {
         List<String> allCarMakes = this.carService.extractCarMakes();
         modelAndView.addObject("carMakes", allCarMakes);
 
-        return view("cars/all", modelAndView);
+        return view("cars/cars-index", modelAndView);
     }
 
     @GetMapping("/{make}")
@@ -36,6 +37,15 @@ public class CarController extends BaseController {
 
         modelAndView.addObject("cars", cars);
 
-        return super.view("cars/cars-make-models", modelAndView);
+        return super.view("cars/cars-makes-list", modelAndView);
+    }
+
+    @GetMapping("/{id}/parts")
+    public ModelAndView carParts(@PathVariable Long id, ModelAndView modelAndView) {
+        CarDetailsPartsViewModel car = this.carService.extractCarWithParts(id);
+
+        modelAndView.addObject("car", car);
+
+        return super.view("cars/cars-details", modelAndView);
     }
 }

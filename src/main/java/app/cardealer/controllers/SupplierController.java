@@ -33,6 +33,6 @@ public class SupplierController extends BaseController {
 
         modelAndView.addObject("suppliers", suppliers);
 
-        return super.view("suppliers/details", modelAndView);
+        return super.view("suppliers/suppliers-details", modelAndView);
     }
 }

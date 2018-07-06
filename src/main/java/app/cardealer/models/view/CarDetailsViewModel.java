@@ -2,6 +2,8 @@ package app.cardealer.models.view;
 
 public class CarDetailsViewModel {
 
+    private Long id;
+
     private String make;
 
     private String model;
@@ -9,6 +11,14 @@ public class CarDetailsViewModel {
     private Long travelledDistance;
 
     public CarDetailsViewModel() {
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getMake() {

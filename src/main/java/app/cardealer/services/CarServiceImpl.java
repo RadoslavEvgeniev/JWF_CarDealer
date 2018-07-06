@@ -1,6 +1,7 @@
 package app.cardealer.services;
 
 import app.cardealer.entites.Car;
+import app.cardealer.models.view.CarDetailsPartsViewModel;
 import app.cardealer.models.view.CarDetailsViewModel;
 import app.cardealer.repositories.CarRepository;
 import org.modelmapper.ModelMapper;
@@ -40,4 +41,17 @@ public class CarServiceImpl implements CarService {
 
         return cars;
     }
+
+    @Override
+    public CarDetailsPartsViewModel extractCarWithParts(Long id) {
+        Car carFromDb = this.carRepository.findById(id).orElse(null);
+        if (carFromDb == null) {
+            return null;
+        }
+
+        CarDetailsPartsViewModel carViewModel = this.modelMapper.map(carFromDb, CarDetailsPartsViewModel.class);
+        return carViewModel;
+    }
+
+
 }

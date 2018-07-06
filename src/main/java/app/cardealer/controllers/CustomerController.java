@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -23,10 +22,10 @@ public class CustomerController extends BaseController {
         this.customerService = customerService;
     }
 
-    @GetMapping("/all")
+    @GetMapping("")
     public ModelAndView allCustomersIndex() {
 
-        return super.view("customers/all");
+        return super.view("customers/customers-index");
     }
 
     @GetMapping("/all/{order}")
@@ -35,6 +34,6 @@ public class CustomerController extends BaseController {
 
         modelAndView.addObject("customers", customers);
 
-        return super.view("customers/list-customers", modelAndView);
+        return super.view("customers/customers-list", modelAndView);
     }
 }
