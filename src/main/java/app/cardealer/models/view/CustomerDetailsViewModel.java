@@ -4,11 +4,20 @@ import java.util.Date;
 
 public class CustomerDetailsViewModel {
 
+    private Long id;
     private String name;
     private Date birthDate;
     private Boolean isYoungDriver;
 
     public CustomerDetailsViewModel() {
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
