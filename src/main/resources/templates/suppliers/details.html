@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{fragments/head}"></th:block>
+</head>
+<body>
+<div class="jumbotron col-sm-2" style="background-color: lightgrey">
+    <h1>Welcome to car dealer!</h1>
+    <h2>Spring Essentials Exercise</h2>
+    <h4>Filter Suppliers Task</h4>
+    <table class="table table-striped border-dark">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Number of Parts</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <th:block th:each="supplier : ${suppliers}">
+            <tr>
+                <td th:text="${supplier.id}"></td>
+                <td th:text="${supplier.name}"></td>
+                <td th:text="${supplier.numberOfParts}"></td>
+            </tr>
+        </th:block>
+
+        </tbody>
+    </table>
+    <a class="btn btn" role="button" style="background-color: white" th:href="@{/}">Back to home</a>
+</div>
+</body>
+</html>
