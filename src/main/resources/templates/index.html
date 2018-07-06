@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{fragments/head}"></th:block>
+</head>
+<body>
+    <div class="jumbotron col-sm-2" style="background-color: skyblue">
+        <h1>Welcome to car dealer!</h1>
+        <h2>Spring Essentials Exercise</h2>
+        <h4>Click the buttons below</h4>
+        <a class="btn btn-warning" role="button" th:href="@{/customers/all}">Ordered Customers</a>
+        <a class="btn btn-warning" role="button" th:href="@{/cars/all}">Cars Makes</a>
+    </div>
+</body>
+</html>
