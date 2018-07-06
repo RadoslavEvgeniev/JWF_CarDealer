@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{fragments/head}"></th:block>
+</head>
+<body>
+<div class="jumbotron" style="background-color: deepskyblue">
+    <h1>Cars Make Models</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Make</th>
+            <th scope="col">Model</th>
+            <th scope="col">Travelled Distance</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <th:block th:each="car : ${cars}">
+            <tr>
+                <td th:text="${car.make}"></td>
+                <td th:text="${car.model}"></td>
+                <td th:text="${car.travelledDistance}"></td>
+            </tr>
+        </th:block>
+
+        </tbody>
+    </table>
+    <a class="btn btn" role="button" style="background-color: white" th:href="@{/}">Back to home</a>
+</div>
+</body>
+</html>
