@@ -13,4 +13,11 @@ public abstract class BaseController {
     protected ModelAndView view(String view) {
         return this.view(view, new ModelAndView());
     }
+
+    protected ModelAndView redirect(String view) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.setViewName("redirect:" + view);
+        return modelAndView;
+    }
 }

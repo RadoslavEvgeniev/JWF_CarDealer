@@ -5,10 +5,11 @@
     <link rel="stylesheet" href="../../../bootstrap.css">
 </head>
 <body>
+<th:block th:insert="~{fragments/navbar}"></th:block>
 <div class="jumbotron">
     <h1>Welcome to car dealer!</h1>
     <h2>Spring Essentials Exercise</h2>
-    <h4>4. Cars With Their List of Parts {id}</h4>
+    <h4>Query 4. Cars With Their List of Parts {id}</h4>
     <hr />
     <h5 th:text="${car.make}"></h5>
     <h5 th:text="${car.model}"></h5>

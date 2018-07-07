@@ -5,10 +5,11 @@
     <link rel="stylesheet" href="../../bootstrap.css">
 </head>
 <body>
+<th:block th:insert="~{fragments/navbar}"></th:block>
     <div class="jumbotron">
         <h1>Welcome to car dealer!</h1>
         <h2>Spring Essentials Exercise</h2>
-        <h4>5. Total Sales by Customer Task</h4>
+        <h4>Query 5. Total Sales by Customer Task</h4>
         <hr />
         <h5 th:text="${customer.name}"></h5>
         <h5 th:text="${customer.sales.size()}"></h5>
