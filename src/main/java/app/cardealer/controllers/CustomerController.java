@@ -3,6 +3,7 @@ package app.cardealer.controllers;
 import app.cardealer.models.binding.CustomerCreateBindingModel;
 import app.cardealer.models.view.CustomerDetailsSalesViewModel;
 import app.cardealer.models.view.CustomerDetailsViewModel;
+import app.cardealer.models.view.CustomerEditViewModel;
 import app.cardealer.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,6 +58,22 @@ public class CustomerController extends BaseController {
     @PostMapping("/add")
     public ModelAndView addCustomerConfirm(CustomerCreateBindingModel customerBindingModel) {
         this.customerService.insertCustomer(customerBindingModel);
+
+        return super.redirect("/");
+    }
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView editCustomer(@PathVariable Long id, ModelAndView modelAndView) {
+        CustomerEditViewModel customer = this.customerService.extractCustomerForEdit(id);
+
+        modelAndView.addObject("customer", customer);
+
+        return super.view("customers/customers-edit", modelAndView);
+    }
+
+    @PostMapping("/edit/{id}")
+    public ModelAndView editCustomerConfirm(@PathVariable Long id, CustomerCreateBindingModel customerBindingModel) {
+        this.customerService.insertEditedCustomer(id, customerBindingModel);
 
         return super.redirect("/");
     }
