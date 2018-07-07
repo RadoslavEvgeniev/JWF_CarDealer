@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{fragments/head}"></th:block>
+    <link rel="stylesheet" href="../bootstrap.css">
+</head>
+<body>
+<div class="jumbotron">
+    <h1>Welcome to car dealer!</h1>
+    <h2>Spring Essentials Exercise</h2>
+    <h4>Sales</h4>
+    <hr/>
+    <a class="btn bg-white" th:href="@{/sales}">All Sales</a>
+    <form th:action="@{/sales/discounted}" method="get">
+        <label for="searchByPercent">
+            <input type="number" step="any" id="searchByPercent" placeholder="Percent..." name="percent">
+        </label>
+        <input type="submit" class="btn btn-info" value="Search">
+    </form>
+    <ol>
+        <th:block th:each="sale : ${sales}">
+            <li>
+                <a class="btn btn-info" th:href="@{/sales/{id}(id=${sale.id})}" th:text="${sale.customer.name}"></a>
+            </li>
+        </th:block>
+    </ol>
+    <a class="btn bg-white" th:href="@{/}">Back to Home</a>
+</div>
+</body>
+</html>

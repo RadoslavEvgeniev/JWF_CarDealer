@@ -2,11 +2,23 @@ package app.cardealer.models.view;
 
 public class SaleDetailsViewModel {
 
+    private Long id;
+
     private CarDetailsPartsViewModel car;
 
     private Double discount;
 
+    private CustomerDetailsViewModel customer;
+
     public SaleDetailsViewModel() {
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public CarDetailsPartsViewModel getCar() {
@@ -23,5 +35,13 @@ public class SaleDetailsViewModel {
 
     public void setDiscount(Double discount) {
         this.discount = discount;
+    }
+
+    public CustomerDetailsViewModel getCustomer() {
+        return this.customer;
+    }
+
+    public void setCustomer(CustomerDetailsViewModel customer) {
+        this.customer = customer;
     }
 }
