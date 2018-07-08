@@ -3,6 +3,7 @@ package app.cardealer.entites;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,6 +18,7 @@ public class Part {
     private List<Car> cars;
 
     public Part() {
+        this.cars = new ArrayList<>();
     }
 
     @Id

@@ -3,7 +3,6 @@ package app.cardealer.models.view;
 public class PartViewModel {
 
     private String name;
-
     private Double price;
 
     public PartViewModel() {

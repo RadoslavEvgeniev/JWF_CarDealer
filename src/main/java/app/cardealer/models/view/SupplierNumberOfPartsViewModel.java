@@ -3,9 +3,7 @@ package app.cardealer.models.view;
 public class SupplierNumberOfPartsViewModel {
 
     private Long id;
-
     private String name;
-
     private Integer numberOfParts;
 
     public SupplierNumberOfPartsViewModel() {
