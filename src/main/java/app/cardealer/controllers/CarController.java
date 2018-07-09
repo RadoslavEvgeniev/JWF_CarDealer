@@ -1,13 +1,14 @@
 package app.cardealer.controllers;
 
+import app.cardealer.models.binding.CarCreateBindingModel;
 import app.cardealer.models.view.CarDetailsPartsViewModel;
 import app.cardealer.models.view.CarDetailsViewModel;
+import app.cardealer.models.view.PartViewModel;
 import app.cardealer.services.CarService;
+import app.cardealer.services.PartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -17,10 +18,12 @@ import java.util.List;
 public class CarController extends BaseController {
 
     private CarService carService;
+    private PartService partService;
 
     @Autowired
-    public CarController(CarService carService) {
+    public CarController(CarService carService, PartService partService) {
         this.carService = carService;
+        this.partService = partService;
     }
 
     @GetMapping("")
@@ -47,5 +50,23 @@ public class CarController extends BaseController {
         modelAndView.addObject("car", car);
 
         return super.view("cars/cars-details", modelAndView);
+    }
+
+    @GetMapping("/add")
+    public ModelAndView carCreate(ModelAndView modelAndView) {
+        List<CarDetailsViewModel> cars = this.carService.extractCars();
+        List<PartViewModel> parts = this.partService.extractParts();
+
+        modelAndView.addObject("cars", cars);
+        modelAndView.addObject("parts", parts);
+
+        return super.view("cars/cars-create", modelAndView);
+    }
+
+    @PostMapping("/add")
+    public ModelAndView carCreateConfirm(@ModelAttribute CarCreateBindingModel carBindingModel) {
+        this.carService.importCar(carBindingModel);
+
+        return super.redirect("/");
     }
 }

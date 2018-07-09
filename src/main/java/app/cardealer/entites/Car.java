@@ -3,6 +3,7 @@ package app.cardealer.entites;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,6 +17,7 @@ public class Car {
     private List<Part> parts;
 
     public Car() {
+        this.parts = new ArrayList<>();
     }
 
     @Id
@@ -56,7 +58,7 @@ public class Car {
         this.travelledDistance = travelledDistance;
     }
 
-    @ManyToMany(mappedBy = "cars", targetEntity = Part.class)
+    @ManyToMany(mappedBy = "cars", targetEntity = Part.class, fetch = FetchType.EAGER)
     public List<Part> getParts() {
         return this.parts;
     }

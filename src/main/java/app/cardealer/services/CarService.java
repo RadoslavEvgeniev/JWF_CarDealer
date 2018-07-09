@@ -1,5 +1,6 @@
 package app.cardealer.services;
 
+import app.cardealer.models.binding.CarCreateBindingModel;
 import app.cardealer.models.view.CarDetailsPartsViewModel;
 import app.cardealer.models.view.CarDetailsViewModel;
 
@@ -12,4 +13,8 @@ public interface CarService {
     List<CarDetailsViewModel> extractAllCarsByMake(String make);
 
     CarDetailsPartsViewModel extractCarWithParts(Long id);
+
+    List<CarDetailsViewModel> extractCars();
+
+    void importCar(CarCreateBindingModel carBindingModel);
 }

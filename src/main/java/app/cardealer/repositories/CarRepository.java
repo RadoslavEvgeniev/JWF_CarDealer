@@ -22,4 +22,9 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     @Modifying
     @Query("SELECT c FROM Car c WHERE c.make = :make ORDER BY c.model ASC, c.travelledDistance DESC")
     List<Car> findAllByMakeOrderByMakeAscTravelledDistanceDesc(@Param("make") String make);
+
+    @Transactional
+    @Modifying
+    @Query("SELECT c FROM Car c GROUP BY c.model ORDER BY c.make, c.model")
+    List<Car> findAllCarsGroupedByModel();
 }

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{fragments/head}"></th:block>
+    <link rel="stylesheet" href="../bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<th:block th:insert="~{fragments/navbar}"></th:block>
+<div class="jumbotron">
+    <h1>Welcome to car dealer!</h1>
+    <h2>Spring Essentials Exercise</h2>
+    <h4>Task 10/11. Add Cars</h4>
+    <hr/>
+    <form th:action="@{/cars/add}" method="post">
+        <div class="form-group">
+            <label for="car-make">
+                Car
+                <select name="carMakeAndModel" id="car-make">
+                    <th:block th:each="car : ${cars}">
+                        <option th:text="|${car.make} ${car.model}|" th:value="|${car.make} : ${car.model}|"></option>
+                    </th:block>
+                </select>
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="car-travelled-distance">
+                Travelled Distance
+                <input type="number" step="any" name="travelledDistance" id="car-travelled-distance">
+            </label>
+        </div>
+
+        <div class="form-group">
+            <div class="form-group" id="partsDiv">
+                <label id="carPartsLabel">
+                    Car parts
+                    <br/>
+                </label>
+            </div>
+            <a class="btn btn-info" id="partAdd">Add Part</a>
+            <script th:inline="javascript">
+                let parts = [[${parts}]];
+
+                $('#partAdd').click(function (e) {
+                    e.preventDefault();
+                    let selectVar = $('<select name="carParts">');
+                    selectVar.append('<option selected>Choose part...</option>');
+                    for (let part of parts) {
+                        let partId = part.id;
+
+                        let optionVar = $('<option>', {
+                            value: partId,
+                            text: part.name + " $" + part.price
+                        });
+
+                        selectVar.append(optionVar);
+                    }
+
+                    $('#partsDiv').append(selectVar);
+                });
+            </script>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Car</button>
+    </form>
+</div>
+</body>
+</html>
