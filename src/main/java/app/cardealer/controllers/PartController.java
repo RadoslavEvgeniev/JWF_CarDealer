@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -36,7 +37,11 @@ public class PartController extends BaseController {
     }
 
     @GetMapping("/add")
-    public ModelAndView addPart(ModelAndView modelAndView) {
+    public ModelAndView addPart(ModelAndView modelAndView, HttpServletRequest request) {
+        if (request.getSession().getAttribute("user-id") == null) {
+            return super.redirect("/users/login");
+        }
+
         List<SupplierNumberOfPartsViewModel> suppliers = this.supplierService.extractSuppliersWithNumberOfParts();
 
         modelAndView.addObject("suppliers", suppliers);
@@ -52,7 +57,11 @@ public class PartController extends BaseController {
     }
 
     @GetMapping("/delete/{id}")
-    public ModelAndView deletePart(@PathVariable Long id, ModelAndView modelAndView) {
+    public ModelAndView deletePart(@PathVariable Long id, ModelAndView modelAndView, HttpServletRequest request) {
+        if (request.getSession().getAttribute("user-id") == null) {
+            return super.redirect("/users/login");
+        }
+
         PartViewModel part = this.partService.extractPartById(id);
 
         modelAndView.addObject("part", part);
@@ -68,7 +77,11 @@ public class PartController extends BaseController {
     }
 
     @GetMapping("/edit/{id}")
-    public ModelAndView editPart(@PathVariable Long id, ModelAndView modelAndView) {
+    public ModelAndView editPart(@PathVariable Long id, ModelAndView modelAndView, HttpServletRequest request) {
+        if (request.getSession().getAttribute("user-id") == null) {
+            return super.redirect("/users/login");
+        }
+
         PartQuantityViewModel part = this.partService.extractPartQuantityById(id);
 
         modelAndView.addObject("part", part);

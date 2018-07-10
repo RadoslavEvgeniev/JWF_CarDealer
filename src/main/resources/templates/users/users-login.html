@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{fragments/head}"></th:block>
+    <link rel="stylesheet" href="../bootstrap.css">
+</head>
+<body>
+    <th:block th:insert="~{fragments/navbar}"></th:block>
+    <div class="jumbotron">
+        <h1>Welcome to car dealer!</h1>
+        <h2>Spring Essentials Exercise</h2>
+        <h4>Task 12. Add Users</h4>
+        <hr/>
+        <form th:action="@{/users/login}" method="post" th:object="${userBindingModel}">
+            <small th:each="error : ${#fields.errors('username')}" th:text="${error}" style="color: red"></small>
+            <small th:each="error : ${#fields.errors('password')}" th:text="${error}" style="color: red"></small>
+            <div class="form-group">
+                <label for="username">
+                    Username
+                    <br/>
+                    <input type="text" th:field="*{username}" id="username" placeholder="Username...">
+                    <br/>
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="password">
+                    Password
+                    <br/>
+                    <input type="password" th:field="*{password}" id="password" placeholder="Password...">
+                    <br/>
+
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</body>
+</html>

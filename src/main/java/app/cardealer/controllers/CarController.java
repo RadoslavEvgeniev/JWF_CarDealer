@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -53,7 +54,11 @@ public class CarController extends BaseController {
     }
 
     @GetMapping("/add")
-    public ModelAndView carCreate(ModelAndView modelAndView) {
+    public ModelAndView carCreate(ModelAndView modelAndView, HttpServletRequest request) {
+        if (request.getSession().getAttribute("user-id") == null) {
+            return super.redirect("/users/login");
+        }
+
         List<CarDetailsViewModel> cars = this.carService.extractCars();
         List<PartViewModel> parts = this.partService.extractParts();
 

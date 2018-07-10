@@ -6,15 +6,32 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/customers/add}" style="color: white">Add Customer</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/parts/add}" style="color: white">Add Part</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/cars/add}" style="color: white">Add Car</a>
-                </li>
+                <th:block th:unless="${#request.getSession().getAttribute('user-id')}">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/users/register}" style="color: white">Register</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/users/login}" style="color: white">Login</a>
+                    </li>
+                </th:block>
+                <th:block th:if="${#request.getSession().getAttribute('user-id')}">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/customers/add}" style="color: white">Add Customer</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/parts/add}" style="color: white">Add Part</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/cars/add}" style="color: white">Add Car</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/sales/add}" style="color: white">Add Sale</a>
+                    </li>
+                    <li class="nav-item active right">
+                        <a class="nav-link" th:href="@{/users/logout}" style="color: white">Logout</a>
+                    </li>
+                </th:block>
+
             </ul>
         </div>
     </nav>

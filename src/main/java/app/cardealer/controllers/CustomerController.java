@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -51,7 +52,11 @@ public class CustomerController extends BaseController {
     }
 
     @GetMapping("/add")
-    public ModelAndView addCustomer() {
+    public ModelAndView addCustomer(HttpServletRequest request) {
+        if (request.getSession().getAttribute("user-id") == null) {
+            return super.redirect("/users/login");
+        }
+
         return super.view("customers/customers-create");
     }
 
@@ -63,7 +68,11 @@ public class CustomerController extends BaseController {
     }
 
     @GetMapping("/edit/{id}")
-    public ModelAndView editCustomer(@PathVariable Long id, ModelAndView modelAndView) {
+    public ModelAndView editCustomer(@PathVariable Long id, ModelAndView modelAndView, HttpServletRequest request) {
+        if (request.getSession().getAttribute("user-id") == null) {
+            return super.redirect("/users/login");
+        }
+
         CustomerEditViewModel customer = this.customerService.extractCustomerForEdit(id);
 
         modelAndView.addObject("customer", customer);

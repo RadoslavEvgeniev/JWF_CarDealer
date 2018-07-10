@@ -8,6 +8,9 @@
     <div class="jumbotron">
         <h1>Welcome to car dealer!</h1>
         <h2>Spring Essentials Exercise</h2>
+        <th:block th:if="${#request.getSession().getAttribute('username')}">
+            <h3 th:text="|Hello, ${#request.getSession().getAttribute('username')}|"></h3>
+        </th:block>
         <h4>Click the buttons below</h4>
         <hr />
         <a class="btn bg-white" th:href="@{/customers}">Customers</a>
